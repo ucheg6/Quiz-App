@@ -1,38 +1,38 @@
 // Questions for the quiz app
 var questions = [{
-    "question": "Which American inventor is generally given credit for the invention of the lightning rod?",
-    "option1": "Nikola Tesla",
-    "option2": "George Washington",
-    "option3": "Benjamin Franklin",
-    "option4": "Elijah McCoy",
+    "question": "Who is Andela's President?",
+    "option1": "Seni Sulyman",
+    "option2": "Evan Green-Lowe",
+    "option3": "Christina Sass",
+    "option4": "Jeremy Johnson",
     "answer": "3"
 }, {
-    "question": "Jimmy Carter was the first U.S. president born in a what?",
-    "option1": "Air Plane",
-    "option2": "Hospital",
-    "option3": "Submarine",
-    "option4": "Island",
+    "question": "Who is Andela's V.P of Global Operations?",
+    "option1": "Evan Green-Lowe",
+    "option2": "Seni Sulyman",
+    "option3": "Christina Sass",
+    "option4": "Jeremy Johnson",
     "answer": "2"
 }, {
-    "question": "In Disney's 'The Little Mermaid' what is the name of the human that Ariel falls in love with?",
-    "option1": "King George",
-    "option2": "Barry White",
-    "option3": "Olaf The Snowman",
-    "option4": "Prince Eric",
+    "question": "Which of these Andela's EPIC Values is wrongly spelt?",
+    "option1": "Excellence",
+    "option2": "Passion",
+    "option3": "Integrity",
+    "option4": "Collaborration",
     "answer": "4"
 }, {
-    "question": "What is the name of the animated science fiction comedy-drama film released in 2002 about a Hawaiin girl and her unusual pet?",
-    "option1": "Lilo & Stitch",
-    "option2": "Moana",
-    "option3": "How To Train Your Dragon",
-    "option4": "Coraline",
+    "question": "Who is Andela's CEO?",
+    "option1": "Jeremy Johnson",
+    "option2": "Evan Green-Lowe",
+    "option3": "Christina Sass",
+    "option4": "Nadayar Enegesi",
     "answer": "1"
 }, {
-    "question": "How many mother sauces are there in classical French cuisine?",
-    "option1": "Twenty",
-    "option2": "Two",
-    "option3": "Five",
-    "option4": "Nine",
+    "question": "What is the full meaning of this Andela's acronym YOYO?",
+    "option1": "You only you only",
+    "option2": "Yeast off yesterdays own",
+    "option3": "You own your own",
+    "option4": "Yes oh yes oh",
     "answer": "3"
 }, {
     "question": "The original Starbucks was established in 1971 in what U.S. city?",
@@ -72,28 +72,33 @@ var questions = [{
 }];
 
 
-// Script to run game
-var currentQuestion = 0;
-var score = 0;
-var totQuestions = questions.length;
+// variable declarations
+let currentQuestion = 0;
+let score = 0;
+const totalQuestions = questions.length;
 
-var container = document.getElementById('quizContainer');
-var questionEl = document.getElementById('question');
-var opt1 = document.getElementById('opt1');
-var opt2 = document.getElementById('opt2');
-var opt3 = document.getElementById('opt3');
-var opt4 = document.getElementById('opt4');
-var nextButton = document.getElementById('nextButton');
-var resultCont = document.getElementById('result');
+const container = document.getElementById('quizContainer');
+const questionContainer = document.getElementById('question');
+const opt1 = document.getElementById('opt1');
+const opt2 = document.getElementById('opt2');
+const opt3 = document.getElementById('opt3');
+const opt4 = document.getElementById('opt4');
+const nextButton = document.getElementById('nextButton');
+const resultContainer = document.getElementById('result');
+const questionCount = document.getElementById('question-count');
 
+
+//function responsible for loading questions and options
 function loadQuestion (questionIndex) {
-	var q = questions[questionIndex];
-	questionEl.textContent = (questionIndex + 1) + '. ' + q.question;
+    questionCount.textContent = `Question ${questionIndex + 1} of ${totalQuestions} `;
+	let q = questions[questionIndex];
+	questionContainer.textContent = (questionIndex + 1) + '. ' + q.question;
 	opt1.textContent = q.option1;
 	opt2.textContent = q.option2;
 	opt3.textContent = q.option3;
-	opt4.textContent = q.option4;
-};
+    opt4.textContent = q.option4;
+
+}
 
 function loadNextQuestion() {
 	var selectedOption = document.querySelector('input[type=radio]:checked');
@@ -109,17 +114,17 @@ function loadNextQuestion() {
 	}
 	selectedOption.checked = false;
 	currentQuestion++;
-	if(currentQuestion == totQuestions - 1){
+	if(currentQuestion == totalQuestions - 1){
         nextButton.value = 'Submit';
    
 	}
-	if(currentQuestion == totQuestions){
+	if(currentQuestion == totalQuestions){
         container.style.display = 'none';
-		resultCont.style.display = '';
-        resultCont.textContent = 'Your Score: ' + score;
-        
-		return;
-	}
+		resultContainer.style.display = '';
+        resultContainer.textContent = 'Your Score: ' + score;
+        return;
+    }
+   
 	loadQuestion(currentQuestion);
 }
 
